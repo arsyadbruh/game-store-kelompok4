@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -46,7 +45,7 @@ public class LoginController {
                 System.out.println("login gagal");
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Login Failed");
-                alert.setContentText("Invalid Login Credential");
+                alert.setContentText("Username atau password salah");
                 alert.showAndWait();
             }
         }        
