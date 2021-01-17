@@ -1,3 +1,5 @@
+package controller;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +13,9 @@ import javafx.scene.control.PasswordField;
 
 
 
-public class GameStoreController {
+public class LoginController {
+    private Stage dialogStage;
+
     @FXML
     private Button loginButton;
 
@@ -21,11 +25,12 @@ public class GameStoreController {
     @FXML
     private PasswordField textPassword;
 
+    public void setDialogStage(Stage dialogStage){
+        this.dialogStage = dialogStage;
+    }
+
     @FXML
     private void handleSign(ActionEvent event) throws Exception{
-        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/storeLayout.fxml"));
-        AnchorPane page = (AnchorPane) loadLayout.load();
-
         if(event.getSource() == loginButton){
             System.out.println("Login");
             String usern = textUsername.getText();
@@ -33,18 +38,20 @@ public class GameStoreController {
             System.out.println(textUsername.getText());
             System.out.println(textPassword.getText());
             if(usern.equalsIgnoreCase("admin") && passw.equalsIgnoreCase("1234")){
-                
                 System.out.println("Login Sukses");
-                Stage dialogStage = new Stage();
-                dialogStage.setTitle("Game Store");
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                Scene scene = new Scene(page);
-                dialogStage.setScene(scene);
-                dialogStage.show();
-            
+                storeMain();
             }else{
                 System.out.println("login gagal");
             }
         }        
+    }
+
+    private void storeMain() throws Exception{
+        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/storeLayout.fxml"));
+        AnchorPane storePage = (AnchorPane) loadLayout.load();
+        Scene scene = new Scene(storePage);
+        dialogStage.setTitle("Game Store");
+        dialogStage.setScene(scene);
+        dialogStage.show();
     }
 }
