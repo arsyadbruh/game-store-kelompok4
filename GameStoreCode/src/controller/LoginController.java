@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 
 
@@ -42,6 +44,10 @@ public class LoginController {
                 storeMain();
             }else{
                 System.out.println("login gagal");
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Login Failed");
+                alert.setContentText("Invalid Login Credential");
+                alert.showAndWait();
             }
         }        
     }
