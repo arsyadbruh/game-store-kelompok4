@@ -32,7 +32,7 @@
             <Font name="Arial Bold" size="13.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <Text fill="WHITE" fontSmoothingType="LCD" layoutX="208.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click Sign in to enter FOUR games">
