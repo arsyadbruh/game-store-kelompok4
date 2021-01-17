@@ -17,17 +17,17 @@
             <Image url="@../GAMBAR/LOGIN/login%20-%20cyberpunk.jpg" />
          </image>
       </ImageView>
-      <TextField alignment="CENTER_RIGHT" layoutX="294.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 2px 2px 0px; -fx-border-color: #F552EA;">
+      <TextField fx:id="textUsername" alignment="CENTER_RIGHT" layoutX="294.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 2px 2px 0px; -fx-border-color: #F552EA;">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <PasswordField layoutX="607.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 2px;">
+      <PasswordField fx:id="textPassword" layoutX="607.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 2px;">
          <font>
             <Font size="13.0" />
          </font>
       </PasswordField>
-      <Button layoutX="467.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleSign" opacity="0.83" prefHeight="29.0" prefWidth="266.0" style="-fx-background-color: #F552EA;" text="Sign in" textFill="WHITE">
+      <Button fx:id="loginButton" layoutX="467.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleSign" opacity="0.83" prefHeight="29.0" prefWidth="266.0" style="-fx-background-color: #F552EA;" text="Sign in" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
