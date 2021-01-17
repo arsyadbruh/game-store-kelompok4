@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="448.0" fitWidth="600.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../GAMBAR/LOGIN/login-01.jpg" />
+            <Image url="@../img/LOGIN/login-01.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="textUsername" layoutX="176.0" layoutY="190.0" prefHeight="25.0" prefWidth="260.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F552EA; -fx-text-inner-color: #ffffff;">

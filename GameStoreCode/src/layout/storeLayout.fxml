@@ -44,12 +44,12 @@
          </children></AnchorPane>
       <ImageView fitHeight="610.0" fitWidth="600.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../GAMBAR/MENU%20STORE/revisi-min.jpg" />
+            <Image url="@../img/MENU%20STORE/wd_2.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="610.0" fitWidth="609.0" layoutX="600.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../GAMBAR/MENU%20STORE/revisi%201-min.jpg" />
+            <Image url="@../img/MENU%20STORE/wd_legion.jpg" />
          </image>
       </ImageView>
       <Button alignment="TOP_RIGHT" layoutY="40.0" mnemonicParsing="false" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: transparant;" text="Watch Dogs 2" textFill="#f552ea">
