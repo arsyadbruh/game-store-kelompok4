@@ -23,7 +23,7 @@ public class GameStoreMain extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // TODO Konek Store Layout ketika tombol button di tekan
+        
     }
 
     public static void main(String[] args) throws Exception {
