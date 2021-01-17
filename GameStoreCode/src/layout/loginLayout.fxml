@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameStoreController">
+   <children>
+      <ImageView fitHeight="448.0" fitWidth="600.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../GAMBAR/LOGIN/login-01.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="textUsername" layoutX="176.0" layoutY="190.0" prefHeight="25.0" prefWidth="260.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F552EA; -fx-text-inner-color: #ffffff;">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="textPassword" layoutX="176.0" layoutY="228.0" prefHeight="25.0" prefWidth="260.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 0px; -fx-text-inner-color: #ffffff;">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="loginButton" layoutX="173.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSign" opacity="0.83" prefHeight="29.0" prefWidth="266.0" styleClass="btn-sign" stylesheets="@../style/style.css" text="Sign in" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Text fill="WHITE" fontSmoothingType="LCD" layoutX="208.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click Sign in to enter FOUR games">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="106.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an FOUR games account ?">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Button layoutX="322.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: transparant;" text="Sign Up" textFill="#f552ea">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="400.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: transparant;" text="Sign In Later" textFill="#f552ea">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </Button>
+      <Text fill="WHITE" layoutX="388.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#f552ea" layoutX="181.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME">
+         <font>
+            <Font name="Arial Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="279.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TO ALL GAMERS">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

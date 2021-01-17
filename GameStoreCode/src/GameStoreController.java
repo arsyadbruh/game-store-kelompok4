@@ -23,7 +23,7 @@ public class GameStoreController {
 
     @FXML
     private void handleSign(ActionEvent event) throws Exception{
-        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/Store.fxml"));
+        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/storeLayout.fxml"));
         AnchorPane page = (AnchorPane) loadLayout.load();
 
         if(event.getSource() == loginButton){

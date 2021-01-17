@@ -1,15 +1,16 @@
-*{
-    -fx-padding: 20px;
+/*  #F552EA */
+
+#loginButton{
+    -fx-background-color: #F552EA;
+    -fx-padding : 10px;
+    -fx-transition: 0.3s;
+}
+
+#loginButton:hover{
+    -fx-background-color: #750663;
 }
 
 #textUsername{
-    -fx-padding: 5px;
-}
+    -fx-text-inner-color : #fff;
 
-#textPassword{
-    -fx-padding: 5px;
-}
-
-#loginButton{
-    -fx-padding: 5px;
 }

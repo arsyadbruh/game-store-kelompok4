@@ -14,7 +14,7 @@ public class GameStoreMain extends Application{
          * Login lyout dibuat menjadi layout yang pertama muncul
          */
 
-        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/Login.fxml"));
+        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/loginLayout.fxml"));
         AnchorPane loginLayout = (AnchorPane) loadLayout.load();
         Scene scene = new Scene (loginLayout);
 
