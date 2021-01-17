@@ -1,0 +1,15 @@
+*{
+    -fx-padding: 20px;
+}
+
+#textUsername{
+    -fx-padding: 5px;
+}
+
+#textPassword{
+    -fx-padding: 5px;
+}
+
+#loginButton{
+    -fx-padding: 5px;
+}

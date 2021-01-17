@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
@@ -17,15 +18,21 @@
             <Image url="@../GAMBAR/LOGIN/login%20-%20cyberpunk.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="textUsername" alignment="CENTER_RIGHT" layoutX="294.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 2px 2px 0px; -fx-border-color: #F552EA;">
+      <TextField fx:id="textUsername" alignment="CENTER_RIGHT" layoutX="294.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-padding: 5px;">
          <font>
             <Font size="13.0" />
          </font>
+         <padding>
+            <Insets bottom="5.0" left="20.0" right="2.0" top="5.0" />
+         </padding>
       </TextField>
-      <PasswordField fx:id="textPassword" layoutX="607.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 2px;">
+      <PasswordField fx:id="textPassword" layoutX="607.0" layoutY="351.0" prefHeight="25.0" prefWidth="300.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-padding: 5px;">
          <font>
             <Font size="13.0" />
          </font>
+         <padding>
+            <Insets bottom="5.0" left="2.0" right="20.0" top="5.0" />
+         </padding>
       </PasswordField>
       <Button fx:id="loginButton" layoutX="467.0" layoutY="407.0" mnemonicParsing="false" onAction="#handleSign" opacity="0.83" prefHeight="29.0" prefWidth="266.0" style="-fx-background-color: #F552EA;" text="Sign in" textFill="WHITE">
          <font>
@@ -34,6 +41,9 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
+         <padding>
+            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+         </padding>
       </Button>
       <Text fill="WHITE" fontSmoothingType="LCD" layoutX="502.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Click Sign in to enter FOUR games">
          <font>
@@ -45,7 +55,7 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Button layoutX="621.0" layoutY="460.0" mnemonicParsing="false" style="-fx-background-color: transparant;" text="Sign Up" textFill="#f552ea">
+      <Button layoutX="621.0" layoutY="460.0" mnemonicParsing="false" text="Sign Up" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -53,7 +63,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button layoutX="699.0" layoutY="460.0" mnemonicParsing="false" style="-fx-background-color: transparant;" text="Sign In Later" textFill="#f552ea">
+      <Button layoutX="699.0" layoutY="460.0" mnemonicParsing="false" text="Sign In Later" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
