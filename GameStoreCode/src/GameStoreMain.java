@@ -14,7 +14,7 @@ public class GameStoreMain extends Application{
          * Login lyout dibuat menjadi layout yang pertama muncul
          */
 
-        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/Login.fxml"));
+        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("layout/loginLayout.fxml"));
         AnchorPane loginLayout = (AnchorPane) loadLayout.load();
         Scene scene = new Scene (loginLayout);
 
@@ -22,8 +22,7 @@ public class GameStoreMain extends Application{
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        // TODO Konek Store Layout ketika tombol button di tekan
+        
     }
 
     public static void main(String[] args) throws Exception {
