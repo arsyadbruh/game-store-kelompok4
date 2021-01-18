@@ -10,4 +10,5 @@ The workspace contains two folders by default, where:
 - `lib`     : the folder to maintain dependencies
 - `img`     : the folder for storing images
 - `style`   : the folder to maintain style sheet
-- `layout`  : the folder to maintain layout fxml
+- `view`    : the folder to maintain layout fxml
+- `core`    : the folder to maintain connection
