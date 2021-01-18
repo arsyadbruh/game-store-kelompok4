@@ -17,12 +17,12 @@
             <Image url="@../img/LOGIN/login-01.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="textUsername" layoutX="176.0" layoutY="190.0" prefHeight="25.0" prefWidth="260.0" promptText="Username" style="-fx-background-color: transparant; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F552EA; -fx-text-inner-color: #ffffff;">
+      <TextField fx:id="textUsername" layoutX="176.0" layoutY="190.0" prefHeight="25.0" prefWidth="260.0" promptText="Username" style="-fx-background-color: #67676700; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F552EA; -fx-text-inner-color: #ffffff;">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="textPassword" layoutX="176.0" layoutY="228.0" prefHeight="25.0" prefWidth="260.0" promptText="Password" style="-fx-background-color: transparant; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 0px; -fx-text-inner-color: #ffffff;">
+      <PasswordField fx:id="textPassword" layoutX="176.0" layoutY="228.0" prefHeight="25.0" prefWidth="260.0" promptText="Password" style="-fx-background-color: #67676700; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 0px; -fx-text-inner-color: #ffffff;">
          <font>
             <Font size="13.0" />
          </font>
@@ -45,7 +45,7 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Button layoutX="322.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: transparant;" text="Sign Up" textFill="#f552ea">
+      <Button layoutX="322.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #67676700;" text="Sign Up" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -53,7 +53,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button layoutX="400.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: transparant;" text="Sign In Later" textFill="#f552ea">
+      <Button layoutX="400.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #67676700;" text="Sign In Later" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
