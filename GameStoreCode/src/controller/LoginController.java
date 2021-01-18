@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 
+import java.sql.PreparedStatement;
+import core.ConnectDB;
 
 
 public class LoginController {
@@ -32,23 +34,24 @@ public class LoginController {
 
     @FXML
     private void handleSign(ActionEvent event) throws Exception{
-        if(event.getSource() == loginButton){
-            System.out.println("Login");
-            String usern = textUsername.getText();
-            String passw = textPassword.getText();
-            System.out.println(textUsername.getText());
-            System.out.println(textPassword.getText());
-            if(usern.equalsIgnoreCase("admin") && passw.equalsIgnoreCase("1234")){
-                System.out.println("Login Sukses");
-                storeMain();
-            }else{
-                System.out.println("login gagal");
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Login Failed");
-                alert.setContentText("Username atau password salah");
-                alert.showAndWait();
-            }
-        }        
+        String query = "select * from user_login where username = ? and password = ? ";
+        PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+        stmt.setString(1, textUsername.getText());
+        stmt.setString(2, textPassword.getText());
+        stmt.execute();
+        if(stmt.getResultSet().next()){
+            System.out.println("Login Sukses");
+            // int id = stmt.getResultSet().getInt("id");
+            stmt.close();
+            storeMain();
+        }else{
+            System.out.println("login gagal");
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("Username atau password salah");
+            alert.showAndWait();
+        }
     }
 
     private void storeMain() throws Exception{
