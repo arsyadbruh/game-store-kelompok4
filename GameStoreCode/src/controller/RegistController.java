@@ -54,7 +54,7 @@ public class RegistController {
                 String query = "insert into user_login (username, password) values (?, ?)";
                 PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
                 stmt.setString(1, setUsername.getText());
-                stmt.setString(2, setUsername.getText());
+                stmt.setString(2, setPassword.getText());
                 stmt.executeUpdate();
                 stmt.close();
                 msgRegist.setText("Resgistration succes, close the windows and try sign in with new account");
