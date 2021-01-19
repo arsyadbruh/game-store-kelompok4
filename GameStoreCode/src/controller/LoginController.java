@@ -18,7 +18,6 @@ import javafx.scene.control.PasswordField;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
-
 import core.ConnectDB;
 
 public class LoginController implements Initializable{
@@ -56,11 +55,13 @@ public class LoginController implements Initializable{
     @FXML
     private void handleSign(ActionEvent event) throws Exception {
         System.out.println("user login"); // hanya untuk debug, bisa dihapus
+        String passw = getPassword();
+
         try {
             String query = "select * from user_login where username = ? and password = ? ";
             PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
             stmt.setString(1, textUsername.getText());
-            stmt.setString(2, textPassword.getText());
+            stmt.setString(2, passw);
             stmt.execute();
             if (stmt.getResultSet().next()) {
                 ((Node) event.getSource()).getScene().getWindow().hide();
@@ -103,21 +104,33 @@ public class LoginController implements Initializable{
 
     @FXML
     private void toggleShowSelect(ActionEvent event){
+        try {
+            if (toggleShow.isSelected()) {
+                System.out.println("Show Password");  // hanya untuk debug, bisa dihapus
+                showpassw.setText(textPassword.getText());
+                textPassword.setVisible(false);
+                showpassw.setVisible(true);
+                return;
+            }
+            System.out.println("Hide Password Status : True"); // hanya untuk debug, bisa dihapus
+            textPassword.setText(showpassw.getText());
+            showpassw.setVisible(false);
+            textPassword.setVisible(true);
 
-        if (toggleShow.isSelected()) {
-            System.out.println("Show Password");
-            showpassw.setText(textPassword.getText());
-            textPassword.setVisible(false);
-            showpassw.setVisible(true);
-            return;
+        } catch (Exception e) {
+            System.out.println("Error cause by : " + e.getCause());
+            System.out.println("Error Message : " + e.getMessage());
         }
+        
+    }
 
-        showpassw.setVisible(false);
-        textPassword.setVisible(true);
-
-        // if (!toggleShow.isSelected()) {
-        //     System.out.println("Hide Password");
-        // }
+    // method untuk get password
+    private String getPassword() {
+        if (toggleShow.isSelected()) {
+            return showpassw.getText();
+        } else {
+            return textPassword.getText();
+        }
     }
 
     // method untuk memanggil store layout
