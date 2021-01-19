@@ -67,6 +67,7 @@ public class LoginController {
         AnchorPane storePage = (AnchorPane) loadLayout.load();
         Scene scene = new Scene(storePage);
         dialogStage.setTitle("Game Store");
+        dialogStage.setResizable(false);
         dialogStage.setScene(scene);
         dialogStage.show();
 
