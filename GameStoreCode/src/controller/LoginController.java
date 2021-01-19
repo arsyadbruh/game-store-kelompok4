@@ -3,21 +3,25 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 
+import java.net.URL;
 import java.sql.PreparedStatement;
+import java.util.ResourceBundle;
+
 import core.ConnectDB;
 
-
-public class LoginController {
+public class LoginController implements Initializable{
     private Stage dialogStage;
 
     @FXML
@@ -32,15 +36,25 @@ public class LoginController {
     @FXML
     private PasswordField textPassword;
 
+    @FXML
+    private TextField showpassw;
+
+    @FXML
+    private CheckBox toggleShow;
+
     // set dialogstage dari main start
-    public void setDialogStage(Stage dialogStage){
+    public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.toggleShowSelect(null);
+    }
 
     // login connect to database
     @FXML
-    private void handleSign(ActionEvent event) throws Exception{
+    private void handleSign(ActionEvent event) throws Exception {
         System.out.println("user login"); // hanya untuk debug, bisa dihapus
         try {
             String query = "select * from user_login where username = ? and password = ? ";
@@ -48,29 +62,29 @@ public class LoginController {
             stmt.setString(1, textUsername.getText());
             stmt.setString(2, textPassword.getText());
             stmt.execute();
-            if(stmt.getResultSet().next()){
-                ((Node)event.getSource()).getScene().getWindow().hide();
+            if (stmt.getResultSet().next()) {
+                ((Node) event.getSource()).getScene().getWindow().hide();
                 System.out.println("Login Sukses");
                 int id = stmt.getResultSet().getInt("id_user"); // untuk menampilkan username yang login
                 stmt.close();
                 storeMain(id);
-            }else{
+            } else {
                 System.out.println("login gagal");
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Login Failed");
                 alert.setHeaderText(null);
                 alert.setContentText("Username atau password salah");
                 alert.showAndWait();
-            }    
+            }
         } catch (Exception e) {
-            System.out.println("Error cause by : "+ e.getCause());
-            System.out.println("Error Message : "+e.getMessage());
+            System.out.println("Error cause by : " + e.getCause());
+            System.out.println("Error Message : " + e.getMessage());
         }
-        
+
     }
 
     @FXML
-    private void handleSignup(ActionEvent event) throws Exception{
+    private void handleSignup(ActionEvent event) throws Exception {
         System.out.println("user signup"); // hanya untuk debug, bisa dihapus
         try {
             FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/formLayout.fxml"));
@@ -82,13 +96,32 @@ public class LoginController {
             regisStage.setScene(scene);
             regisStage.showAndWait();
         } catch (Exception e) {
-            System.out.println("Error cause by : "+ e.getCause());
-            System.out.println("Error Message : "+e.getMessage());
+            System.out.println("Error cause by : " + e.getCause());
+            System.out.println("Error Message : " + e.getMessage());
         }
     }
 
+    @FXML
+    private void toggleShowSelect(ActionEvent event){
+
+        if (toggleShow.isSelected()) {
+            System.out.println("Show Password");
+            showpassw.setText(textPassword.getText());
+            textPassword.setVisible(false);
+            showpassw.setVisible(true);
+            return;
+        }
+
+        showpassw.setVisible(false);
+        textPassword.setVisible(true);
+
+        // if (!toggleShow.isSelected()) {
+        //     System.out.println("Hide Password");
+        // }
+    }
+
     // method untuk memanggil store layout
-    private void storeMain(int id_user) throws Exception{
+    private void storeMain(int id_user) throws Exception {
         FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/storeLayout.fxml"));
         AnchorPane storePage = (AnchorPane) loadLayout.load();
         Scene scene = new Scene(storePage);
@@ -101,4 +134,5 @@ public class LoginController {
         GameStoreController control = loadLayout.getController();
         control.setData(id_user);
     }
+
 }
