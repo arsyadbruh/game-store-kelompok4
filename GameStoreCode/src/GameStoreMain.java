@@ -31,7 +31,7 @@ public class GameStoreMain extends Application{
         // login controller
         LoginController control = loadLayout.getController();
         control.setDialogStage(dialogStage);
-        dialogStage.showAndWait();
+        dialogStage.show();
         
     }
 
