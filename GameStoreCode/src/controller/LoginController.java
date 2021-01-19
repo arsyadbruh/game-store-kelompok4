@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -45,6 +46,7 @@ public class LoginController {
         stmt.setString(2, textPassword.getText());
         stmt.execute();
         if(stmt.getResultSet().next()){
+            ((Node)event.getSource()).getScene().getWindow().hide();
             System.out.println("Login Sukses");
             int id = stmt.getResultSet().getInt("id_user"); // untuk menampilkan username yang login
             stmt.close();
@@ -65,6 +67,7 @@ public class LoginController {
         AnchorPane storePage = (AnchorPane) loadLayout.load();
         Scene scene = new Scene(storePage);
         dialogStage.setTitle("Game Store");
+        dialogStage.setResizable(false);
         dialogStage.setScene(scene);
         dialogStage.show();
 
