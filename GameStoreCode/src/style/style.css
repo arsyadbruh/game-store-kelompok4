@@ -10,3 +10,19 @@
     -fx-background-color: #750663;
 }
 
+#signupButton:hover{
+    -fx-text-fill: #750663;
+}
+
+#toggleShow > .box {
+    -fx-background-color:  #67676700;
+    -fx-border-color: #F552EA;
+}
+
+#toggleShow:selected > .box{
+    -fx-background-color:  #F552EA;
+}
+
+#toggleShow:selected > .box > .mark {
+    -fx-background-color:  #FFFFFF;
+}

@@ -39,7 +39,7 @@ public class RegistController {
     }
 
     /** QUERY FOR SQL
-     * INSERT INTO `colum user` (`id_user`, `username`, `password`, `saldo`) VALUES ('username', 'password');
+     * INSERT INTO `user_login` (`id_user`, `username`, `password`, `saldo`) VALUES ('username', 'password');
      * id_user auto increment
      * saldo default 0
      */
@@ -48,7 +48,7 @@ public class RegistController {
     private void handleSignUp(ActionEvent event) {
         try {
             if (setUsername.getText().isEmpty() || setPassword.getText().isEmpty()) {
-                msgRegist.setText("Isi username atau passwordnya");
+                msgRegist.setText("Fill username or password!");
             } else {
                 System.out.println("Regist"); // hanya untuk debug, bisa dihapus
                 String query = "insert into user_login (username, password) values (?, ?)";
@@ -57,12 +57,13 @@ public class RegistController {
                 stmt.setString(2, setPassword.getText());
                 stmt.executeUpdate();
                 stmt.close();
-                msgRegist.setText("Resgistration succes, close the windows and try sign in with new account");
+                msgRegist.setText("Registration succes, close the windows and try sign in with new account");
                 setUsername.clear();
                 setPassword.clear();    
             }
 
         } catch (Exception e) {
+            msgRegist.setText("Registration Failed!");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }
