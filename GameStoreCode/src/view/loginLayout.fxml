@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <ImageView fitHeight="448.0" fitWidth="600.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,12 +23,17 @@
             <Font size="13.0" />
          </font>
       </TextField>
+      <TextField fx:id="showpassw" layoutX="176.0" layoutY="228.0" prefHeight="25.0" prefWidth="260.0" style="-fx-background-color: #67676700; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F552EA; -fx-text-inner-color: #ffffff;">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
       <PasswordField fx:id="textPassword" layoutX="176.0" layoutY="228.0" prefHeight="25.0" prefWidth="260.0" promptText="Password" style="-fx-background-color: #67676700; -fx-border-color: #F552EA; -fx-border-width: 0px 0px 2px 0px; -fx-text-inner-color: #ffffff;">
          <font>
             <Font size="13.0" />
          </font>
       </PasswordField>
-      <Button fx:id="loginButton" layoutX="173.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSign" opacity="0.83" prefHeight="29.0" prefWidth="266.0" styleClass="btn-sign" stylesheets="@../style/style.css" text="Sign in" textFill="WHITE">
+      <Button fx:id="loginButton" layoutX="173.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleSign" opacity="0.83" prefHeight="29.0" prefWidth="266.0" text="Sign in" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
@@ -40,12 +46,12 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="165.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an FOUR games account ?">
+      <Text fill="WHITE" layoutX="165.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an FOUR games account ?">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Button fx:id="signupButton" layoutX="381.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleSignup" style="-fx-background-color: #67676700;" text="Sign Up" textFill="#f552ea">
+      <Button fx:id="signupButton" layoutX="381.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleSignup" style="-fx-background-color: #67676700;" text="Sign Up" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -63,5 +69,6 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
+      <CheckBox fx:id="toggleShow" layoutX="181.0" layoutY="265.0" mnemonicParsing="false" onAction="#toggleShowSelect" text="Show Password" textFill="WHITE" />
    </children>
 </AnchorPane>
