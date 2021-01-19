@@ -26,6 +26,9 @@ public class GameStoreController {
     @FXML
     private Label user;
 
+    @FXML
+    private Label saldo;
+
     // mendapatkan username yang lagin berdasarkan id
     public void userinfo() throws Exception{
         String query = "select * from user_login where id_user = ?";
@@ -33,7 +36,10 @@ public class GameStoreController {
         stmt.setInt(1,id_user);
         ResultSet rs = stmt.executeQuery();
         if(rs.next()){
+            int userSaldo = rs.getInt("saldo");
+            String wallet = Integer.toString(userSaldo);
             user.setText(rs.getString("username"));
+            saldo.setText(wallet);
         }
         stmt.close();
     }
@@ -55,20 +61,26 @@ public class GameStoreController {
 
     @FXML
     void handleLogout(ActionEvent event) throws Exception {
-        System.out.println("logout button");
-        ((Node)event.getSource()).getScene().getWindow().hide();
-        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/loginLayout.fxml"));
-        AnchorPane loginPage = (AnchorPane) loadLayout.load();
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("GameStore | Login");
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        dialogStage.setResizable(false);
-        Scene scene = new Scene (loginPage);
-        dialogStage.setScene(scene);
+        System.out.println("user Logout");
+        try {
+            ((Node)event.getSource()).getScene().getWindow().hide();
+            FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/loginLayout.fxml"));
+            AnchorPane loginPage = (AnchorPane) loadLayout.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("GameStore | Login");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setResizable(false);
+            Scene scene = new Scene (loginPage);
+            dialogStage.setScene(scene);
 
-        // login controller
-        LoginController control = loadLayout.getController();
-        control.setDialogStage(dialogStage);
-        dialogStage.showAndWait();
+            // login controller
+            LoginController control = loadLayout.getController();
+            control.setDialogStage(dialogStage);
+            dialogStage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Error cause by : "+ e.getCause());
+            System.out.println("Error Message : "+e.getMessage());
+        }
+        
     }
 }

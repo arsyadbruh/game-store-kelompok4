@@ -40,32 +40,19 @@
             <Font size="13.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="106.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an FOUR games account ?">
+      <Text fill="WHITE" layoutX="165.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an FOUR games account ?">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <Button layoutX="322.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #67676700;" text="Sign Up" textFill="#f552ea">
+      <Button fx:id="signupButton" layoutX="381.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleSignup" style="-fx-background-color: #67676700;" text="Sign Up" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="400.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #67676700;" text="Sign In Later" textFill="#f552ea">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </Button>
-      <Text fill="WHITE" layoutX="388.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
       <Text fill="#f552ea" layoutX="181.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME">
          <font>
             <Font name="Arial Bold" size="48.0" />

@@ -24,6 +24,9 @@ public class LoginController {
     private Button loginButton;
 
     @FXML
+    private Button signupButton;
+
+    @FXML
     private TextField textUsername;
 
     @FXML
@@ -38,26 +41,49 @@ public class LoginController {
     // login connect to database
     @FXML
     private void handleSign(ActionEvent event) throws Exception{
-        String query = "select * from user_login where username = ? and password = ? ";
+        System.out.println("user login"); // hanya untuk debug, bisa dihapus
+        try {
+            String query = "select * from user_login where username = ? and password = ? ";
+            PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+            stmt.setString(1, textUsername.getText());
+            stmt.setString(2, textPassword.getText());
+            stmt.execute();
+            if(stmt.getResultSet().next()){
+                ((Node)event.getSource()).getScene().getWindow().hide();
+                System.out.println("Login Sukses");
+                int id = stmt.getResultSet().getInt("id_user"); // untuk menampilkan username yang login
+                stmt.close();
+                storeMain(id);
+            }else{
+                System.out.println("login gagal");
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Login Failed");
+                alert.setHeaderText(null);
+                alert.setContentText("Username atau password salah");
+                alert.showAndWait();
+            }    
+        } catch (Exception e) {
+            System.out.println("Error cause by : "+ e.getCause());
+            System.out.println("Error Message : "+e.getMessage());
+        }
+        
+    }
 
-        // read database
-        PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
-        stmt.setString(1, textUsername.getText());
-        stmt.setString(2, textPassword.getText());
-        stmt.execute();
-        if(stmt.getResultSet().next()){
-            ((Node)event.getSource()).getScene().getWindow().hide();
-            System.out.println("Login Sukses");
-            int id = stmt.getResultSet().getInt("id_user"); // untuk menampilkan username yang login
-            stmt.close();
-            storeMain(id);
-        }else{
-            System.out.println("login gagal");
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("Username atau password salah");
-            alert.showAndWait();
+    @FXML
+    private void handleSignup(ActionEvent event) throws Exception{
+        System.out.println("user signup"); // hanya untuk debug, bisa dihapus
+        try {
+            FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/formLayout.fxml"));
+            AnchorPane formPage = (AnchorPane) loadLayout.load();
+            Scene scene = new Scene(formPage);
+            Stage regisStage = new Stage();
+            regisStage.setTitle("Resgistration");
+            regisStage.setResizable(false);
+            regisStage.setScene(scene);
+            regisStage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Error cause by : "+ e.getCause());
+            System.out.println("Error Message : "+e.getMessage());
         }
     }
 
