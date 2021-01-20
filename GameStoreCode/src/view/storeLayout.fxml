@@ -61,7 +61,7 @@
             <Image url="@../img/MENU%20STORE/wd_legion.jpg" />
          </image>
       </ImageView>
-      <Button alignment="TOP_RIGHT" layoutY="40.0" mnemonicParsing="false" onAction="#handleGame" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #67676700;" text="Watch Dogs 2" textFill="#f552ea">
+      <Button alignment="TOP_RIGHT" layoutY="40.0" mnemonicParsing="false" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #67676700;" text="Watch Dogs 2" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -69,7 +69,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="TOP_LEFT" layoutX="600.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleGame" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #67676700;" text="Watch Dogs : Legion" textFill="#f552ea">
+      <Button alignment="TOP_LEFT" layoutX="600.0" layoutY="40.0" mnemonicParsing="false" prefHeight="610.0" prefWidth="600.0" style="-fx-background-color: #67676700;" text="Watch Dogs : Legion" textFill="#f552ea">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -78,5 +78,15 @@
          </cursor>
       </Button>
       <Line endX="27.0" endY="-55.0" layoutX="866.0" layoutY="86.0" startX="27.0" startY="-77.0" stroke="#a8a8a8" strokeWidth="3.0" />
+      <Button fx:id="wdTwo" layoutX="256.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleGame" text="BUY - Rp 500">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="wdLegion" layoutX="856.0" layoutY="568.0" mnemonicParsing="false" onAction="#handleGame" text="BUY - Rp 10.000">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
