@@ -77,15 +77,13 @@ public class GameStoreController {
          */
         System.out.println("game button");
         if (event.getSource() == wdTwo) {
-            updateSaldo = userSaldo - price_wdTwo;
+            setSaldo(price_wdTwo);
             saldo.setText(Integer.toString(updateSaldo));
-            return;
         }
         
         if (event.getSource() == wdLegion){
-            updateSaldo = userSaldo - price_wdLegion;
+            setSaldo(price_wdLegion);
             saldo.setText(Integer.toString(updateSaldo));
-            return;
         }
         
     }
@@ -138,5 +136,12 @@ public class GameStoreController {
             System.out.println("Error Message : "+e.getMessage());
         }
         
+    }
+
+    // method untuk update saldo
+    // ini cuma sementara untuk demo
+    private void setSaldo(int price){
+        this.updateSaldo = userSaldo - price;
+        this.userSaldo = updateSaldo;
     }
 }

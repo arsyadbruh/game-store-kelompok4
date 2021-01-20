@@ -64,6 +64,7 @@ public class RegistController {
 
         } catch (Exception e) {
             msgRegist.setText("Registration Failed!");
+            msgRegist.setStyle("-fx-text-fill: #f51f1f");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }
