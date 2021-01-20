@@ -33,6 +33,7 @@ public class GameStoreMain extends Application{
             control.setDialogStage(dialogStage);
             dialogStage.show();
         } catch (Exception e) {
+            System.out.println("Error Main > start");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }

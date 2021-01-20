@@ -78,6 +78,7 @@ public class LoginController implements Initializable{
                 alert.showAndWait();
             }
         } catch (Exception e) {
+            System.out.println("Error handleSign");
             System.out.println("Error cause by : " + e.getCause());
             System.out.println("Error Message : " + e.getMessage());
         }
@@ -97,6 +98,7 @@ public class LoginController implements Initializable{
             regisStage.setScene(scene);
             regisStage.showAndWait();
         } catch (Exception e) {
+            System.out.println("Error handleSignup");
             System.out.println("Error cause by : " + e.getCause());
             System.out.println("Error Message : " + e.getMessage());
         }
@@ -118,6 +120,7 @@ public class LoginController implements Initializable{
             textPassword.setVisible(true);
 
         } catch (Exception e) {
+            System.out.println("Error toggleShowSelect");
             System.out.println("Error cause by : " + e.getCause());
             System.out.println("Error Message : " + e.getMessage());
         }
@@ -135,17 +138,25 @@ public class LoginController implements Initializable{
 
     // method untuk memanggil store layout
     private void storeMain(int id_user) throws Exception {
-        FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/storeLayout.fxml"));
-        AnchorPane storePage = (AnchorPane) loadLayout.load();
-        Scene scene = new Scene(storePage);
-        dialogStage.setTitle("Game Store");
-        dialogStage.setResizable(false);
-        dialogStage.setScene(scene);
-        dialogStage.show();
+        try {
+            FXMLLoader loadLayout;
+            loadLayout = new FXMLLoader(getClass().getResource("../view/storeLayout.fxml"));
+            AnchorPane storePage = (AnchorPane) loadLayout.load();
+            Scene scene = new Scene(storePage);
+            dialogStage.setTitle("Game Store");
+            dialogStage.setResizable(false);
+            dialogStage.setScene(scene);
+            dialogStage.show();
 
-        // store controller
-        GameStoreController control = loadLayout.getController();
-        control.setData(id_user);
+            // store controller
+            GameStoreController control = loadLayout.getController();
+            control.setData(id_user);
+        }catch (Exception e){
+            System.out.println("storeMain");
+            System.out.println("Error cause by : " + e.getCause());
+            System.out.println("Error Message : " + e.getMessage());
+        }
+
     }
 
 }

@@ -106,6 +106,7 @@ public class GameStoreController {
             control.setUser(id_user);
             dialogStage.show();
         } catch (Exception e) {
+            System.out.println("Error handleLibrary");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }
@@ -132,6 +133,7 @@ public class GameStoreController {
             control.setDialogStage(dialogStage);
             dialogStage.showAndWait();
         } catch (Exception e) {
+            System.out.println("Error handleLogout");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }
