@@ -7,10 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 
 public class UserLibraryController {
+    private Stage dialogStage;
+
     @FXML
     private Button backButton;
 
@@ -20,11 +21,16 @@ public class UserLibraryController {
         this.user = id_user;
     }
 
+    void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+
+
     @FXML
     private void handleBack(ActionEvent event) throws Exception{
         try {
             System.out.println("back to store"); // hanya untuk debug, bisa dihapus
-            ((Node) event.getSource()).getScene().getWindow().hide();
+            dialogStage.close();
             storeMain(user);
         } catch (Exception e) {
             System.out.println("Error handleBack");
