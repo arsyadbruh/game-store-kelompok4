@@ -7,8 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,15 +38,15 @@ public class GameStoreController {
     private Label user;
 
     @FXML
-    private Label saldo;
+    private Label saldo; // label saldo pada layout
 
     @FXML
-    private Button wdTwo;
+    private Button wdTwo; // tombol buy Watch Dog 2
 
     @FXML
-    private Button wdLegion;
+    private Button wdLegion; // tombol buy Watch Dog : Legion
 
-    // mendapatkan username yang lagin berdasarkan id
+    // mendapatkan username dan saldo yang lagin berdasarkan id
     public void userinfo() throws Exception{
         String query = "select * from user_login where id_user = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
@@ -75,13 +77,20 @@ public class GameStoreController {
          * QUERY for SQL
          * UPDATE `user_login` SET `saldo` = 'updateSaldo' WHERE `user_login`.`id_user` = id_user;
          */
-        System.out.println("game button");
-        if (event.getSource() == wdTwo) {
-            setSaldo(price_wdTwo);
-            saldo.setText(Integer.toString(updateSaldo));
+        System.out.println("game button"); // hanya untuk debug, bisa dihapus
+        
+        /**
+         * event.getSource() untuk sumber event yang lagi berjalan
+         * contoh getSource() == wdTwo  berarti cek event yang lagi berjalan berasal dari tombol wdTwo
+         * event bisa berasal dari tombol yang ditekan atau lainya.
+         */
+
+        if (event.getSource() == wdTwo) { //jika buy watch dog 2 ditekan
+            setSaldo(price_wdTwo); //panggil method set saldo
+            saldo.setText(Integer.toString(updateSaldo)); // update label saldo di layout
         }
         
-        if (event.getSource() == wdLegion){
+        if (event.getSource() == wdLegion){ //jika buy watch dog legion ditekan
             setSaldo(price_wdLegion);
             saldo.setText(Integer.toString(updateSaldo));
         }
@@ -104,8 +113,10 @@ public class GameStoreController {
 
             UserLibraryController control = loadLayout.getController();
             control.setUser(id_user);
+            control.setDialogStage(dialogStage);
             dialogStage.show();
         } catch (Exception e) {
+            System.out.println("Error handleLibrary");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }
@@ -132,6 +143,7 @@ public class GameStoreController {
             control.setDialogStage(dialogStage);
             dialogStage.showAndWait();
         } catch (Exception e) {
+            System.out.println("Error handleLogout");
             System.out.println("Error cause by : "+ e.getCause());
             System.out.println("Error Message : "+e.getMessage());
         }
@@ -139,9 +151,19 @@ public class GameStoreController {
     }
 
     // method untuk update saldo
-    // ini cuma sementara untuk demo
+    // ini cuma sementara, HANYA untuk demo
     private void setSaldo(int price){
-        this.updateSaldo = userSaldo - price;
-        this.userSaldo = updateSaldo;
+        if (!(userSaldo < price)) {
+            System.out.println("Pembelian berhasil"); // hanya untuk debug, bisa dihapus
+            this.updateSaldo = userSaldo - price;
+            this.userSaldo = updateSaldo;
+        } else {
+            System.out.println("Pembelian gagal"); // hanya untuk debug, bisa dihapus
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Pembelian Gagal");
+            alert.setHeaderText(null);
+            alert.setContentText("saldo tidak cukup");
+            alert.showAndWait();
+        }
     }
 }
