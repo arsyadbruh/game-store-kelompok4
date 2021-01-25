@@ -3,7 +3,6 @@
  * Dibuat untuk memenuhi tugas final project mata kuliah PBO
  * Dibuat dengan java 15 dan javaFX 8
  * 
- * TODO Kalau bisa tambah comment
  * jika ingin menambah method baru atau yang lain 
  * kalau bisa berikan komentar penjelas apa itu 
  */
@@ -26,6 +25,7 @@ public class GameStoreMain extends Application{
          * catch {jika ada eror menjalankan baris kode yang ada di bracket cacth}
          */
         try {
+            System.out.println("Loading Login");
             /**
              * loadlayout funginya untuk me-load loginLayout dari view
              * anchorpane disini digunakan karena layout kita pakai anchor pane
@@ -59,6 +59,8 @@ public class GameStoreMain extends Application{
     }
 
     public static void main(String[] args) throws Exception {
+        System.out.println("App Start"); // hanya untuk debug, bisa dihapus
         Application.launch(args); // run app javafx kita
+        System.out.println("App Close"); // hanya untuk debug, bisa dihapus
     }
 }

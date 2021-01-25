@@ -3,7 +3,6 @@
 #loginButton{
     -fx-background-color: #F552EA;
     -fx-padding : 10px;
-    -fx-transition: 0.3s;
 }
 
 #loginButton:hover{
