@@ -83,7 +83,6 @@ public class LoginController implements Initializable{
             System.out.println("Error cause by : " + e.getCause());
             System.out.println("Error Message : " + e.getMessage());
         }
-
     }
 
     @FXML

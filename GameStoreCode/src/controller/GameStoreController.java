@@ -17,17 +17,10 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class GameStoreController {
-    /**
-     * TODO Buat tabel game pada database
-     * kolom : id_game, judul, price
-     * read tabel game
-     */
     private int id_user = 0;
-    private int userSaldo= 0;
-    private int price_wdTwo = 500; // harga sementera
-    private int price_wdLegion = 10000; //harga sementara
-    private int updateSaldo = 0;
-    
+    private int userSaldo = 0;
+    private int tempSaldo = 0;
+
     @FXML
     private Button libraryButton;
 
@@ -47,12 +40,12 @@ public class GameStoreController {
     private Button wdLegion; // tombol buy Watch Dog : Legion
 
     // mendapatkan username dan saldo yang lagin berdasarkan id
-    public void userinfo() throws Exception{
+    public void userinfo() throws Exception {
         String query = "select * from user_login where id_user = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
-        stmt.setInt(1,id_user);
+        stmt.setInt(1, id_user);
         ResultSet rs = stmt.executeQuery();
-        if(rs.next()){
+        if (rs.next()) {
             userSaldo = rs.getInt("saldo");
             String wallet = Integer.toString(userSaldo);
             user.setText(rs.getString("username"));
@@ -61,24 +54,27 @@ public class GameStoreController {
         stmt.close();
     }
 
+    int getPriceGame(int btn_id) throws Exception {
+        String query = "select * from games where id_game = ?";
+        PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+        stmt.setInt(1, btn_id);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            int priceGame = rs.getInt("harga");
+            System.out.println(rs.getInt("harga"));
+            return priceGame;
+        }
+        System.out.println("Gagal dapat harga");
+        return 0;
+    }
+
     public void setData(int id_user) throws Exception {
         this.id_user = id_user;
         userinfo();
     }
 
     @FXML
-    void handleGame(ActionEvent event) throws Exception {
-        /**
-         * TODO update database tabel user_login
-         * saldo user update berdasarkan price game
-         * konfirmasi pembelian
-         * verifikasi pembelian
-         * 
-         * QUERY for SQL
-         * UPDATE `user_login` SET `saldo` = 'updateSaldo' WHERE `user_login`.`id_user` = id_user;
-         */
-        System.out.println("game button"); // hanya untuk debug, bisa dihapus
-        
+    void handleGame(ActionEvent event) throws Exception {        
         /**
          * event.getSource() untuk sumber event yang lagi berjalan
          * contoh getSource() == wdTwo  berarti cek event yang lagi berjalan berasal dari tombol wdTwo
@@ -86,13 +82,13 @@ public class GameStoreController {
          */
 
         if (event.getSource() == wdTwo) { //jika buy watch dog 2 ditekan
-            setSaldo(price_wdTwo); //panggil method set saldo
-            saldo.setText(Integer.toString(updateSaldo)); // update label saldo di layout
+            updateSaldo(1);; // panggil method set saldo
+            // saldo.setText(Integer.toString(updateSaldo)); // update label saldo di layout
         }
-        
-        if (event.getSource() == wdLegion){ //jika buy watch dog legion ditekan
-            setSaldo(price_wdLegion);
-            saldo.setText(Integer.toString(updateSaldo));
+
+        if (event.getSource() == wdLegion) { // jika buy watch dog legion ditekan
+            updateSaldo(2);
+            // saldo.setText(Integer.toString(updateSaldo));
         }
         
     }
@@ -150,13 +146,31 @@ public class GameStoreController {
         
     }
 
-    // method untuk update saldo
-    // ini cuma sementara, HANYA untuk demo
-    private void setSaldo(int price){
+    // method untuk validasi pembelian
+    private boolean validation(int btn_id) throws Exception {
+        int price = getPriceGame(btn_id);
+        
         if (!(userSaldo < price)) {
             System.out.println("Pembelian berhasil"); // hanya untuk debug, bisa dihapus
-            this.updateSaldo = userSaldo - price;
-            this.userSaldo = updateSaldo;
+            this.tempSaldo = userSaldo - price;
+            this.userSaldo = tempSaldo;
+            return true;
+        }
+        
+        return false;
+    }
+
+    // method untuk update saldo ke database
+    private void updateSaldo(int btn_id) throws Exception{
+        
+        if (validation(btn_id)) {
+            String query = "UPDATE user_login SET saldo = ? WHERE id_user = ?";
+            PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+            stmt.setInt(1, tempSaldo);
+            stmt.setInt(2, id_user);
+            stmt.executeUpdate();
+
+            saldo.setText(Integer.toString(tempSaldo));
         } else {
             System.out.println("Pembelian gagal"); // hanya untuk debug, bisa dihapus
             Alert alert = new Alert(AlertType.ERROR);
@@ -164,6 +178,6 @@ public class GameStoreController {
             alert.setHeaderText(null);
             alert.setContentText("saldo tidak cukup");
             alert.showAndWait();
-        }
+        }        
     }
 }
