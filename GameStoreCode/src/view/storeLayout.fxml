@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +36,7 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <Label fx:id="user" alignment="CENTER" layoutX="780.0" layoutY="6.0" prefHeight="27.0" prefWidth="113.0" text="Username" textFill="WHITE">
+            <Label fx:id="user" alignment="CENTER" layoutX="780.0" layoutY="6.0" prefHeight="27.0" prefWidth="113.0" styleClass="titleGame" text="Username" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
@@ -62,15 +63,37 @@
          </image>
       </ImageView>
       <Line endX="27.0" endY="-55.0" layoutX="866.0" layoutY="86.0" startX="27.0" startY="-77.0" stroke="#a8a8a8" strokeWidth="3.0" />
-      <Button fx:id="wdTwo" layoutX="220.0" layoutY="577.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleGame" prefHeight="37.0" prefWidth="161.0" styleClass="buyButton" text="BUY - Rp 500" textFill="WHITE">
+      <Button fx:id="wdTwo" layoutX="220.0" layoutY="577.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleGame" prefHeight="37.0" prefWidth="161.0" styleClass="buyButton" text="BUY - Rp15.000,-" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
-      <Button fx:id="wdLegion" layoutX="820.0" layoutY="577.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleGame" prefHeight="37.0" prefWidth="161.0" styleClass="buyButton" text="BUY - Rp 10.000" textFill="WHITE">
+      <Button fx:id="wdLegion" layoutX="820.0" layoutY="577.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleGame" prefHeight="37.0" prefWidth="161.0" styleClass="buyButton" text="BUY - Rp20.000,-" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
+      <Label layoutX="191.0" layoutY="50.0" styleClass="titleGame" text="Watch Dog 2" textFill="#f552ea">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <effect>
+            <DropShadow spread="0.08" />
+         </effect>
+      </Label>
+      <Label layoutX="728.0" layoutY="50.0" styleClass="titleGame" text="Watch Dog : Legion" textFill="#f552ea">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <effect>
+            <DropShadow spread="0.08" />
+         </effect>
+      </Label>
    </children>
 </AnchorPane>
