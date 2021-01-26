@@ -40,7 +40,7 @@ public class GameStoreController {
     private Button wdLegion; // tombol buy Watch Dog : Legion
 
     // mendapatkan username dan saldo yang lagin berdasarkan id
-    public void userinfo() throws Exception {
+    private void userinfo() throws Exception {
         String query = "select * from user_login where id_user = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
         stmt.setInt(1, id_user);
@@ -54,7 +54,8 @@ public class GameStoreController {
         stmt.close();
     }
 
-    int getPriceGame(int btn_id) throws Exception {
+    // method untuk mendapatkan harga game dari database
+    private int getPriceGame(int btn_id) throws Exception {
         String query = "select * from games where id_game = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
         stmt.setInt(1, btn_id);
@@ -82,13 +83,13 @@ public class GameStoreController {
          */
 
         if (event.getSource() == wdTwo) { //jika buy watch dog 2 ditekan
-            updateSaldo(1);; // panggil method set saldo
-            // saldo.setText(Integer.toString(updateSaldo)); // update label saldo di layout
+            updateSaldo(1);
+            addToLibrary(1);
         }
 
         if (event.getSource() == wdLegion) { // jika buy watch dog legion ditekan
             updateSaldo(2);
-            // saldo.setText(Integer.toString(updateSaldo));
+            addToLibrary(2);
         }
         
     }
@@ -179,5 +180,14 @@ public class GameStoreController {
             alert.setContentText("saldo tidak cukup");
             alert.showAndWait();
         }        
+    }
+
+    private void addToLibrary(int id_game) throws Exception{
+        String query = "INSERT INTO library (id_user, id_game) VALUES (?, ?)";
+        PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+        stmt.setInt(1, id_user);
+        stmt.setInt(2, id_game);
+        stmt.executeUpdate();
+        System.out.println("Add library success");
     }
 }
