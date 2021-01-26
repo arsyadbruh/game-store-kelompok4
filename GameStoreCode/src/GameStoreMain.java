@@ -46,7 +46,7 @@ public class GameStoreMain extends Application{
             Scene scene = new Scene (loginPage);
             dialogStage.setScene(scene);
 
-            // login controller
+            // login controller 
             LoginController control = loadLayout.getController();
             control.setDialogStage(dialogStage);
             dialogStage.show();
@@ -57,10 +57,12 @@ public class GameStoreMain extends Application{
         }
         
     }
-
+    //run application
     public static void main(String[] args) throws Exception {
         System.out.println("App Start"); // hanya untuk debug, bisa dihapus
         Application.launch(args); // run app javafx kita
         System.out.println("App Close"); // hanya untuk debug, bisa dihapus
     }
 }
+
+
