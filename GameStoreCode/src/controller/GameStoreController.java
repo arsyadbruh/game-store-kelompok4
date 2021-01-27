@@ -190,8 +190,7 @@ public class GameStoreController {
         stmt.executeUpdate();
         System.out.println("Add library success");
     }
-}
-// method untuk cek apakah user mempunyai game atau tidak di library mereka
+    // method untuk cek apakah user mempunyai game atau tidak di library mereka
     private boolean isPurchased(int id_game) throws Exception{
 	    String query = "SELECT * FROM library WHERE id_user = ? AND id_game = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
@@ -201,5 +200,6 @@ public class GameStoreController {
         if(stmt.getResultSet().next()){
             return true;
         }
-	return false;
+        return false;
+    }
 }
