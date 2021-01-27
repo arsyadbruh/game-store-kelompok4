@@ -19,3 +19,21 @@
     -fx-border-color: #F552EA;
     -fx-border-width: 2px;
 }
+
+.btnPlay{
+    -fx-background-color: #F552EA;
+
+}
+
+.btnPlay:hover{
+    -fx-background-color: #750663;
+}
+
+.btnDelete{
+    -fx-background-color: #F552EA;
+
+}
+
+.btnDelete:hover{
+    -fx-background-color: #750663;
+}

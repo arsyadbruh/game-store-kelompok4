@@ -2,8 +2,9 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -12,10 +13,44 @@
    <children>
       <AnchorPane fx:id="gameContainer" layoutX="194.0" layoutY="87.0" prefHeight="521.0" prefWidth="965.0" style="-fx-border-width: 3px; -fx-border-color: #f552ea;">
          <children>
-            <Label layoutX="46.0" layoutY="47.0" prefHeight="200.0" prefWidth="180.0" style="-fx-background-color: #fff;" text="Label" />
-            <Label layoutX="272.0" layoutY="48.0" prefHeight="200.0" prefWidth="180.0" style="-fx-background-color: #fff;" text="Label" />
-            <Label layoutX="498.0" layoutY="47.0" prefHeight="200.0" prefWidth="180.0" style="-fx-background-color: #fff;" text="Label" />
-            <Label layoutX="725.0" layoutY="47.0" prefHeight="200.0" prefWidth="180.0" style="-fx-background-color: #fff;" text="Label" />
+            <Pane fx:id="paneOne" layoutX="42.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="thumbOne" fitHeight="192.0" fitWidth="189.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="thumb">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Button fx:id="playButtonOne" layoutY="128.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" styleClass="btnPlay" text="PLAY" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="DelButtonTwo" layoutY="165.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" prefWidth="200.0" styleClass="btnDelete" text="DELETE" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="paneTwo" layoutX="276.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="thumbOne1" fitHeight="192.0" fitWidth="189.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="thumb">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <Button fx:id="playButtonOne1" layoutY="128.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" styleClass="btnPlay" text="PLAY" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="DelButtonTwo1" layoutY="165.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" prefWidth="200.0" styleClass="btnDelete" text="DELETE" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </Pane>
          </children></AnchorPane>
       <AnchorPane layoutX="50.0" layoutY="135.0" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: #f552ea;">
          <children>
