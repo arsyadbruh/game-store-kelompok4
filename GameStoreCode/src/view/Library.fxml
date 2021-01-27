@@ -25,7 +25,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="DelButtonTwo" layoutY="165.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" prefWidth="200.0" styleClass="btnDelete" text="DELETE" textFill="WHITE">
+                  <Button fx:id="DelButtonOne" layoutY="165.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" prefWidth="200.0" styleClass="btnDelete" text="DELETE" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -34,17 +34,17 @@
             </Pane>
             <Pane fx:id="paneTwo" layoutX="276.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="thumbOne1" fitHeight="192.0" fitWidth="189.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="thumb">
+                  <ImageView fx:id="thumbTwo" fitHeight="192.0" fitWidth="189.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="thumb">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Button fx:id="playButtonOne1" layoutY="128.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" styleClass="btnPlay" text="PLAY" textFill="WHITE">
+                  <Button fx:id="playButtonTwo" layoutY="128.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" styleClass="btnPlay" text="PLAY" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="DelButtonTwo1" layoutY="165.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" prefWidth="200.0" styleClass="btnDelete" text="DELETE" textFill="WHITE">
+                  <Button fx:id="DelButtonTwo" layoutY="165.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="32.0" prefWidth="200.0" styleClass="btnDelete" text="DELETE" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
