@@ -50,6 +50,7 @@ public class GameStoreController {
             String wallet = Integer.toString(userSaldo);
             user.setText(rs.getString("username"));
             saldo.setText(wallet);
+            stmt.close();
         }
         stmt.close();
     }
@@ -175,7 +176,7 @@ public class GameStoreController {
             stmt.setInt(1, tempSaldo);
             stmt.setInt(2, id_user);
             stmt.executeUpdate();
-
+            stmt.close();
             saldo.setText(Integer.toString(tempSaldo));
         } else {
             System.out.println("Pembelian gagal"); // hanya untuk debug, bisa dihapus
@@ -193,6 +194,7 @@ public class GameStoreController {
         stmt.setInt(1, id_user);
         stmt.setInt(2, id_game);
         stmt.executeUpdate();
+        stmt.close();
         System.out.println("Add library success");
     }
     // method untuk cek apakah user mempunyai game atau tidak di library mereka
@@ -203,6 +205,7 @@ public class GameStoreController {
         stmt.setInt(2, id_game);
         stmt.execute();
         if(stmt.getResultSet().next()){
+            stmt.close();
             return true;
         }
         return false;
