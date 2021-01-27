@@ -72,6 +72,7 @@ public class GameStoreController {
     public void setData(int id_user) throws Exception {
         this.id_user = id_user;
         userinfo();
+        setBuybtn();
     }
 
     @FXML
@@ -85,11 +86,15 @@ public class GameStoreController {
         if (event.getSource() == wdTwo) { //jika buy watch dog 2 ditekan
             updateSaldo(1);
             addToLibrary(1);
+            wdTwo.setDisable(true);
+            wdTwo.setText("Purchased");
         }
 
         if (event.getSource() == wdLegion) { // jika buy watch dog legion ditekan
             updateSaldo(2);
             addToLibrary(2);
+            wdLegion.setDisable(true);
+            wdLegion.setText("Purchased");
         }
         
     }
@@ -202,4 +207,27 @@ public class GameStoreController {
         }
         return false;
     }
+
+    // method untuk set button buy | disable atau tidak
+public void setBuybtn() throws Exception{        
+    try {
+        System.out.println("try set buy button");
+        if (isPurchased(1)){
+            System.out.println("set button Watch Dog 2");
+            wdTwo.setDisable(true);
+            wdTwo.setText("Purchased");
+        }
+
+        if (isPurchased(2)){
+            System.out.println("set button Watch Dog : Legion");
+            wdLegion.setDisable(true);
+            wdLegion.setText("Purchased");
+        }
+
+        System.out.println("set buy button sukses");
+    } catch (Exception e) {
+        System.out.println("Gagal set buy button");
+    }
+
+}
 }
