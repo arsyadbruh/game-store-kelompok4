@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import core.ConnectDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,6 +47,7 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
 
     public void setUser(int id_user) throws Exception {
         this.user = id_user;
+        visibility();
         getLibrary();
         for (Integer i : id_games) {
             setImgView(i);
@@ -98,11 +98,14 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
         System.out.println("Delete button");
         
         if (event.getSource() == DelButtonOne){
+            lookupID();
+            delLibrary();
             paneOne.setVisible(false);
-                
         }
 
         if (event.getSource() == DelButtonTwo){
+            lookupID();
+            delLibrary();
             paneTwo.setVisible(false);
         }
     }
@@ -137,6 +140,62 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
             this.id_games.add(game);
         }
 
+    }
+
+    private void visibility() throws Exception {
+        try {
+            if(id_games.isEmpty()){
+                System.out.println("Empty");
+                paneOne.setVisible(false);
+                paneTwo.setVisible(false);
+                return;
+            }else{
+                System.out.println("masuk else");
+                paneOne.setVisible(false);
+                paneTwo.setVisible(false);
+                System.out.println(id_games.contains(1));
+                if(id_games.contains(1)){
+                    System.out.println("one visible");
+                    paneOne.setVisible(true);
+                }
+                System.out.println("contain 2"+id_games.contains(2));
+                if(id_games.contains(2)){
+                    System.out.println("two visible");
+                    paneTwo.setVisible(true);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Cek Visibility");
+            System.out.println("Error cause by : " + e.getCause());
+            System.out.println("Error Message : " + e.getMessage());
+        }
+    }
+
+    private void lookupID(int game) throws Exception{
+        String query = "SELECT * FROM library WHERE id_user = ? AND id_game = ?";
+        PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+        stmt.setInt(1, user);
+        stmt.setInt(2, game);
+        stmt.execute();
+        if(stmt.getResultSet().next()){
+            id_library = stmt.getResultSet().getInt("id_library");
+            stmt.close();
+        }
+    }
+
+    private void delLibrary() throws Exception{
+        try {
+            String query = "DELETE FROM library WHERE library.id_library = ?";
+            PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
+            stmt.setInt(1, id_library);
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (Exception e) {
+            System.out.println("Delete Library");
+            System.out.println("Error cause by : " + e.getCause());
+            System.out.println("Error Message : " + e.getMessage());
+        }
+        
     }
 
 }
