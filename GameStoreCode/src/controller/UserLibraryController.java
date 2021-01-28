@@ -47,8 +47,8 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
 
     public void setUser(int id_user) throws Exception {
         this.user = id_user;
-        visibility();
         getLibrary();
+        visibility();
         for (Integer i : id_games) {
             setImgView(i);
         }
