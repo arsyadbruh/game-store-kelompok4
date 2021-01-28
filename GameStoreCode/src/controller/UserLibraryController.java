@@ -98,13 +98,13 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
         System.out.println("Delete button");
         
         if (event.getSource() == DelButtonOne){
-            lookupID();
+            lookupID(1);
             delLibrary();
             paneOne.setVisible(false);
         }
 
         if (event.getSource() == DelButtonTwo){
-            lookupID();
+            lookupID(2);
             delLibrary();
             paneTwo.setVisible(false);
         }
