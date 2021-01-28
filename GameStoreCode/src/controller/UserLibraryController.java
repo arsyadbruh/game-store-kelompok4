@@ -11,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -43,7 +46,7 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
     private int user,id_library;
 
 
-    public void setUser(int id_user){
+    public void setUser(int id_user) throws Exception {
         this.user = id_user;
         getLibrary();
         for (Integer i : id_games) {
