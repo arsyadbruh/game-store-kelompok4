@@ -14,69 +14,56 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
-
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 import core.ConnectDB;
 
 public class LoginController implements Initializable{
+
+    @FXML private Button loginButton, signupButton;
+    @FXML private TextField textUsername, showpassw;
+    @FXML private PasswordField textPassword;
+    @FXML private CheckBox toggleShow;
+
     private Stage dialogStage;
 
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button signupButton;
-
-    @FXML
-    private TextField textUsername;
-
-    @FXML
-    private PasswordField textPassword; // untuk password yang di hide
-
-    @FXML
-    private TextField showpassw; // untuk password yang di show
-
-    @FXML
-    private CheckBox toggleShow; // toggle show atau hide password
-
-    // set dialogstage dari main start
+    /**
+     * set the dialog stage for login page
+     * 
+     * @param dialogStage
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    // initialisasi() dijalankan pertama kali saat controll ini dipanggil
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.toggleShowSelect(null); // set password menjadi hidden pertama kali saat di run
+        this.toggleShowSelect(null);
     }
 
-    // login connect to database
     @FXML
     private void handleSign(ActionEvent event) throws Exception {
-        System.out.println("user login"); // hanya untuk debug, bisa dihapus
         String passw = getPassword();
 
         try {
-            String query = "select * from user_login where username = ? and password = ? "; // query SQL
+            String query = "select * from user_login where username = ? and password = ? ";
             PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
             stmt.setString(1, textUsername.getText());
             stmt.setString(2, passw);
             stmt.execute();
             if (stmt.getResultSet().next()) {
-                ((Node) event.getSource()).getScene().getWindow().hide(); // jika login berhasil, hide window login
-                System.out.println("Login Sukses");
-                int id = stmt.getResultSet().getInt("id_user"); // untuk menampilkan username yang login
+                ((Node) event.getSource()).getScene().getWindow().hide();
+                int id = stmt.getResultSet().getInt("id_user");
                 stmt.close();
                 storeMain(id);
             } else {
                 System.out.println("login gagal");
-                Alert alert = new Alert(AlertType.ERROR); // jika login gagal menampilkan window alert
+                Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Login Failed");
                 alert.setHeaderText(null);
                 alert.setContentText("Username atau password salah");
-                alert.showAndWait(); //showAndWait() menunggu respon dari user
+                alert.showAndWait();
             }
         } catch (Exception e) {
             System.out.println("Error handleSign");
@@ -87,7 +74,7 @@ public class LoginController implements Initializable{
 
     @FXML
     private void handleSignup(ActionEvent event) throws Exception {
-        System.out.println("user signup"); // hanya untuk debug, bisa dihapus
+        System.out.println("user signup");
         try {
             FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/formLayout.fxml"));
             AnchorPane formPage = (AnchorPane) loadLayout.load();
@@ -108,27 +95,17 @@ public class LoginController implements Initializable{
         }
     }
 
-    /** toggleShowSelect()
-     * adalah method untuk show atau hide password pada login layout
-     * disini untuk show and hide digunakan trik dua field yang di tumpuk
-     * TEXTFIELD as showpassw untuk password show
-     * PASSWORDFIELD as textPassword untuk password hide
-     * saat toogle selected maka PASSWORDFIELD akan hilang dan TEXTFIELD akan muncul
-     * method ini akan dijalankan saat initialisasi
-     */
     @FXML
     private void toggleShowSelect(ActionEvent event){
         try {
-            if (toggleShow.isSelected()) { // cek apakah checkbox selected atau tidak
-                System.out.println("Show Password");  // hanya untuk debug, bisa dihapus
-                showpassw.setText(textPassword.getText()); // set text dari TEXTFIELD sama dengan dari PASSWORDFIELD
+            if (toggleShow.isSelected()) {
+                showpassw.setText(textPassword.getText());
                 textPassword.setVisible(false);
                 showpassw.setVisible(true);
                 return;
             }
-            // setVisible() => jika false maka objeknya disembunyikan dan sebaliknya
-            System.out.println("Hide Password Status : True"); // hanya untuk debug, bisa dihapus
-            textPassword.setText(showpassw.getText()); // update PASSWORDFIELD agar sama dengan yang ada di  TEXTFIELD
+
+            textPassword.setText(showpassw.getText());
             showpassw.setVisible(false);
             textPassword.setVisible(true);
 
@@ -141,21 +118,14 @@ public class LoginController implements Initializable{
     }
 
     /**
-     * getPassword() adaalah method untuk mendapatkan password dari TEXTFIELD ataupun PASSWORDFIELD
+     * getPassword() adalah method untuk mendapatkan password dari TEXTFIELD ataupun PASSWORDFIELD
      * jadi controller dapat mendapatkan password dari field manapun itu
      * tergantung dari kondisi checkbox
      */
     private String getPassword() {
-        /**
-         * aku ganti if ... else sebelumnya dengan ternary
-         * ternary => (kondisi) ? <nilai jika true> : <nilai jika false>;
-         * lebih singkat jadi lebih enak bacanya.
-         * lebih lanjut bisa baca di https://www.w3schools.com/java/java_conditions.asp
-         */
         return (toggleShow.isSelected()) ? showpassw.getText() : textPassword.getText();
     }
 
-    // method untuk memanggil store layout
     private void storeMain(int id_user) throws Exception {
         try {
             FXMLLoader loadLayout;
@@ -167,7 +137,6 @@ public class LoginController implements Initializable{
             dialogStage.setScene(scene);
             dialogStage.show();
 
-            // store controller
             GameStoreController control = loadLayout.getController();
             control.setData(id_user);
         }catch (Exception e){
@@ -175,7 +144,5 @@ public class LoginController implements Initializable{
             System.out.println("Error cause by : " + e.getCause());
             System.out.println("Error Message : " + e.getMessage());
         }
-
     }
-
-}
+} // end class

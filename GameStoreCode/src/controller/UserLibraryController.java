@@ -18,33 +18,23 @@ import javafx.stage.Stage;
 
 
 public class UserLibraryController {
+
+    @FXML private Button backButton;
+    @FXML private Pane paneOne, paneTwo;
+    @FXML private ImageView thumbOne, thumbTwo;
+    @FXML private Button DelButtonOne, DelButtonTwo;
+    
     private Stage dialogStage;
-
-    @FXML
-    private Button backButton;
-    @FXML
-    private Pane paneOne;
-
-    @FXML
-    private Pane paneTwo;
-
-    @FXML
-    private ImageView thumbOne;
-
-    @FXML
-    private ImageView thumbTwo;
-
-    @FXML
-    private Button DelButtonOne;
-
-    @FXML
-    private Button DelButtonTwo;
-
-private ArrayList<Integer> id_games = new ArrayList<Integer>();
-
+    private ArrayList<Integer> id_games = new ArrayList<Integer>();
     private int user,id_library;
 
-
+    /**
+     * get user id from store and call method {@code getLibrary} and {@code visibility}
+     * to show the user library from database
+     * 
+     * @param id_user
+     * @throws Exception
+     */
     public void setUser(int id_user) throws Exception {
         this.user = id_user;
         getLibrary();
@@ -62,7 +52,6 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
     @FXML
     private void handleBack(ActionEvent event) throws Exception{
         try {
-            System.out.println("back to store"); // hanya untuk debug, bisa dihapus
             dialogStage.close();
             storeMain(user);
         } catch (Exception e) {
@@ -83,7 +72,6 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
             dialogStage.setScene(scene);
             dialogStage.show();
 
-            // store controller
             GameStoreController control = loadLayout.getController();
             control.setData(id_user);
         }catch (Exception e){
@@ -95,7 +83,6 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
 
     @FXML
     void handleDelete(ActionEvent event) throws Exception {
-        System.out.println("Delete button");
         
         if (event.getSource() == DelButtonOne){
             lookupID(1);
@@ -135,7 +122,6 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
         stmt.setInt(1, user);
         ResultSet rs = stmt.executeQuery();
         while(rs.next()) {
-            System.out.println("ada game");
             int game = rs.getInt("id_game");
             this.id_games.add(game);
         }
@@ -145,22 +131,19 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
     private void visibility() throws Exception {
         try {
             if(id_games.isEmpty()){
-                System.out.println("Empty");
                 paneOne.setVisible(false);
                 paneTwo.setVisible(false);
                 return;
             }else{
-                System.out.println("masuk else");
+                // set the paneOne and panTwo to hidden before check the condition
                 paneOne.setVisible(false);
                 paneTwo.setVisible(false);
-                System.out.println(id_games.contains(1));
+                
                 if(id_games.contains(1)){
-                    System.out.println("one visible");
                     paneOne.setVisible(true);
                 }
-                System.out.println("contain 2"+id_games.contains(2));
+                
                 if(id_games.contains(2)){
-                    System.out.println("two visible");
                     paneTwo.setVisible(true);
                 }
             }
@@ -171,6 +154,7 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
         }
     }
 
+    // get the id of library user
     private void lookupID(int game) throws Exception{
         String query = "SELECT * FROM library WHERE id_user = ? AND id_game = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
@@ -183,6 +167,7 @@ private ArrayList<Integer> id_games = new ArrayList<Integer>();
         }
     }
 
+    // del the library where id user
     private void delLibrary() throws Exception{
         try {
             String query = "DELETE FROM library WHERE library.id_library = ?";

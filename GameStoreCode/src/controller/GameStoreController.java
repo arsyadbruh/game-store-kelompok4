@@ -17,29 +17,14 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class GameStoreController {
+
+    @FXML private Button libraryButton, logoutButton, wdTwo, wdLegion;
+    @FXML private Label user, saldo;
+
     private int id_user = 0;
     private int userSaldo = 0;
     private int tempSaldo = 0;
 
-    @FXML
-    private Button libraryButton;
-
-    @FXML
-    private Button logoutButton;
-
-    @FXML
-    private Label user;
-
-    @FXML
-    private Label saldo; // label saldo pada layout
-
-    @FXML
-    private Button wdTwo; // tombol buy Watch Dog 2
-
-    @FXML
-    private Button wdLegion; // tombol buy Watch Dog : Legion
-
-    // mendapatkan username dan saldo yang lagin berdasarkan id
     private void userinfo() throws Exception {
         String query = "select * from user_login where id_user = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
@@ -55,7 +40,6 @@ public class GameStoreController {
         stmt.close();
     }
 
-    // method untuk mendapatkan harga game dari database
     private int getPriceGame(int btn_id) throws Exception {
         String query = "select * from games where id_game = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
@@ -70,6 +54,13 @@ public class GameStoreController {
         return 0;
     }
 
+    /**
+     * method {@code setData} is to set the user id
+     * and call method {@code userinfo} and {@code setBuybtn}
+     * 
+     * @param id_user
+     * @throws Exception
+     */
     public void setData(int id_user) throws Exception {
         this.id_user = id_user;
         userinfo();
@@ -79,19 +70,17 @@ public class GameStoreController {
     @FXML
     void handleGame(ActionEvent event) throws Exception {        
         /**
-         * event.getSource() untuk sumber event yang lagi berjalan
-         * contoh getSource() == wdTwo  berarti cek event yang lagi berjalan berasal dari tombol wdTwo
-         * event bisa berasal dari tombol yang ditekan atau lainya.
+         * event.getSource() get source event base on fxid on fxml layout
          */
 
-        if (event.getSource() == wdTwo) { //jika buy watch dog 2 ditekan
+        if (event.getSource() == wdTwo) {
             updateSaldo(1);
             addToLibrary(1);
             wdTwo.setDisable(true);
             wdTwo.setText("Purchased");
         }
 
-        if (event.getSource() == wdLegion) { // jika buy watch dog legion ditekan
+        if (event.getSource() == wdLegion) {
             updateSaldo(2);
             addToLibrary(2);
             wdLegion.setDisable(true);
@@ -101,9 +90,8 @@ public class GameStoreController {
     }
 
     @FXML
-    void handleLibrary(ActionEvent event) throws Exception {
+    private void handleLibrary(ActionEvent event) throws Exception {
         try {
-            System.out.println("enter Library"); // hanya untuk debug, bisa dihapus
             ((Node) event.getSource()).getScene().getWindow().hide();
             FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/Library.fxml"));
             AnchorPane libPage = (AnchorPane) loadLayout.load();
@@ -126,8 +114,7 @@ public class GameStoreController {
     }
 
     @FXML
-    void handleLogout(ActionEvent event) throws Exception {
-        System.out.println("user Logout"); // hanya untuk debug, bisa dihapus
+    private void handleLogout(ActionEvent event) throws Exception {
         try {
             ((Node)event.getSource()).getScene().getWindow().hide();
             FXMLLoader loadLayout = new FXMLLoader(getClass().getResource("../view/loginLayout.fxml"));
@@ -138,10 +125,7 @@ public class GameStoreController {
             dialogStage.setResizable(false);
             Scene scene = new Scene (loginPage);
             dialogStage.setScene(scene);
-
-            System.out.println("logout sukses"); // hanya untuk debug, bisa dihapus
             
-            // login controller
             LoginController control = loadLayout.getController();
             control.setDialogStage(dialogStage);
             dialogStage.showAndWait();
@@ -153,7 +137,13 @@ public class GameStoreController {
         
     }
 
-    // method untuk validasi pembelian
+    /**
+     * the method {@code validation} is to valdiation payment user.
+     * 
+     * @param btn_id
+     * @return true if payment success | false if doesn't
+     * @throws Exception
+     */
     private boolean validation(int btn_id) throws Exception {
         int price = getPriceGame(btn_id);
         
@@ -167,7 +157,6 @@ public class GameStoreController {
         return false;
     }
 
-    // method untuk update saldo ke database
     private void updateSaldo(int btn_id) throws Exception{
         
         if (validation(btn_id)) {
@@ -179,7 +168,7 @@ public class GameStoreController {
             stmt.close();
             saldo.setText(Integer.toString(tempSaldo));
         } else {
-            System.out.println("Pembelian gagal"); // hanya untuk debug, bisa dihapus
+            System.out.println("Pembelian gagal");
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Pembelian Gagal");
             alert.setHeaderText(null);
@@ -197,7 +186,13 @@ public class GameStoreController {
         stmt.close();
         System.out.println("Add library success");
     }
-    // method untuk cek apakah user mempunyai game atau tidak di library mereka
+    
+    /**
+     * method {@code isPurchased} is to check whether the user has the game or not on database.
+     * 
+     * @return the return {@code isPurchased} is true if user has a game and false if doesn't
+     * @throws Exception
+     */
     private boolean isPurchased(int id_game) throws Exception{
 	    String query = "SELECT * FROM library WHERE id_user = ? AND id_game = ?";
         PreparedStatement stmt = ConnectDB.connect().prepareStatement(query);
@@ -211,26 +206,30 @@ public class GameStoreController {
         return false;
     }
 
-    // method untuk set button buy | disable atau tidak
-public void setBuybtn() throws Exception{        
-    try {
-        System.out.println("try set buy button");
-        if (isPurchased(1)){
-            System.out.println("set button Watch Dog 2");
-            wdTwo.setDisable(true);
-            wdTwo.setText("Purchased");
-        }
+    /**
+     * method {@code setBuybtn} is to disable button buy on the store.
+     * 
+     * <p>the method {@code setBuybtn} check if user have a game on database. 
+     * this method will call a method {@code isPurchased} to check if true or not
+     * @throws Exception
+     */
+    public void setBuybtn() throws Exception{        
+        try {
 
-        if (isPurchased(2)){
-            System.out.println("set button Watch Dog : Legion");
-            wdLegion.setDisable(true);
-            wdLegion.setText("Purchased");
-        }
+            if (isPurchased(1)){
+                wdTwo.setDisable(true);
+                wdTwo.setText("Purchased");
+            }
 
-        System.out.println("set buy button sukses");
-    } catch (Exception e) {
-        System.out.println("Gagal set buy button");
+            if (isPurchased(2)){
+                wdLegion.setDisable(true);
+                wdLegion.setText("Purchased");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error cause by : "+ e.getCause());
+            System.out.println("Error Message : "+e.getMessage());
+        }
     }
 
-}
-}
+} // end class
