@@ -1,4 +1,4 @@
-![APM](https://img.shields.io/apm/l/vim-mode?style=flat-square)
+[![APM](https://img.shields.io/apm/l/vim-mode?style=flat-square)](LICENSE)
 
 # About Project
 
