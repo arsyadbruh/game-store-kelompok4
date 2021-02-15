@@ -1,3 +1,5 @@
+![APM](https://img.shields.io/apm/l/vim-mode?style=flat-square)
+
 # About Project
 
 The game store is a Java project that demonstrates how a _game store_ like Steam. This is just a project for an object-based programming course assignment for information system study program on Institut Teknologi Telkom Surabaya
@@ -31,4 +33,4 @@ First, if you using java 11 or above set the vmArgs.
 [@Kharis](#)
 
 ## License
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
