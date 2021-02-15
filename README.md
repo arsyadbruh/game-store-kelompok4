@@ -13,7 +13,7 @@ The game store is a Java project that demonstrates how a _game store_ like Steam
 First, if you using java 11 or above set the vmArgs.
 
 ```json
-"vmArgs": "--module-path <directorey library javaFX> --add-modules javafx.controls,javafx.fxml"
+"vmArgs": "--module-path <directory library javaFX> --add-modules javafx.controls,javafx.fxml"
 ```
 
 ## Team
