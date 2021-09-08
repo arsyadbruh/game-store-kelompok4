@@ -1,0 +1,9 @@
+.buyButton{
+    -fx-background-color: #F552EA;
+    -fx-padding: 10px;
+
+}
+
+.buyButton:hover{
+    -fx-background-color: #750663;
+}

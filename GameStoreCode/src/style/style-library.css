@@ -1,0 +1,39 @@
+#libraryLayout{
+    -fx-background-image: url("../img/Library/background-library.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 1200 650;
+    -fx-background-color: black;
+}
+
+#gameContainer{
+    -fx-background-color: #000000a4;
+
+}
+
+#backButton{
+    -fx-background-image: url("../img/icon/back_icon.png");
+    -fx-background-color: #67676700;
+    -fx-background-size: 25 30;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-border-color: #F552EA;
+    -fx-border-width: 2px;
+}
+
+.btnPlay{
+    -fx-background-color: #F552EA;
+
+}
+
+.btnPlay:hover{
+    -fx-background-color: #750663;
+}
+
+.btnDelete{
+    -fx-background-color: #F552EA;
+
+}
+
+.btnDelete:hover{
+    -fx-background-color: #750663;
+}
